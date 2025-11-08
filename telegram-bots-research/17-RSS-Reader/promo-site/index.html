@@ -3,48 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart RSS Reader - Читайте новости красиво</title>
+    <title>Smart RSS Reader - Умный RSS ридер</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; color: #333;
+            line-height: 1.6; color: #1a1a1a;
         }
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 80px 20px; text-align: center;
+            background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
+            color: white; padding: 100px 20px; text-align: center;
         }
-        .hero h1 { font-size: 3em; margin-bottom: 20px; }
-        .hero p { font-size: 1.3em; margin-bottom: 30px; }
+        .hero h1 { font-size: 4em; font-weight: 900; margin-bottom: 20px; }
+        .hero p { font-size: 1.5em; margin-bottom: 30px; opacity: 0.9; }
         .cta-button {
-            display: inline-block; background: white; color: #667eea;
-            padding: 15px 40px; border-radius: 50px; text-decoration: none;
-            font-weight: bold; font-size: 1.2em; transition: all 0.3s;
+            display: inline-block; background: white; color: #f59e0b;
+            padding: 18px 50px; border-radius: 50px; text-decoration: none;
+            font-weight: bold; font-size: 1.3em; margin: 10px;
+            transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .features { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
-        .features h2 { text-align: center; font-size: 2.5em; margin-bottom: 40px; }
-        .footer { background: #2d3748; color: white; text-align: center; padding: 40px 20px; }
+        .cta-button:hover { transform: translateY(-5px); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { font-size: 3em; text-align: center; margin-bottom: 20px; color: #f59e0b; font-weight: 800; }
+        .section-subtitle { text-align: center; font-size: 1.3em; color: #64748b; margin-bottom: 60px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            padding: 40px; border-radius: 20px; text-align: center;
+            transition: transform 0.3s; border: 2px solid #e0f2fe;
+        }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-icon { font-size: 4em; margin-bottom: 20px; }
+        .feature-card h3 { font-size: 1.5em; margin-bottom: 15px; color: #f59e0b; }
+        .stats { padding: 60px 20px; background: white; text-align: center; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
+        .stat h3 { font-size: 3em; color: #f59e0b; margin-bottom: 10px; }
+        .pricing { padding: 80px 20px; background: #f8fafc; }
+        .pricing-cards { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        .pricing-card {
+            background: white; padding: 50px 40px; border-radius: 25px;
+            min-width: 300px; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #f59e0b 0%, #f59e0bdd 100%);
+            color: white; transform: scale(1.05);
+        }
+        .price { font-size: 4em; font-weight: 900; margin: 20px 0; }
+        .footer { background: #0f172a; color: white; text-align: center; padding: 60px 20px; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5em; } .section-title { font-size: 2em; } }
     </style>
 </head>
 <body>
     <section class="hero">
-        <h1>Smart RSS Reader</h1>
-        <p>Читайте новости красиво</p>
-        <p>RSS-ридер с лучшим форматированием</p>
-        <a href="https://t.me/yourbot" class="cta-button">Начать использовать</a>
+        <h1>📰 Smart RSS Reader</h1>
+        <p>Умный RSS ридер</p>
+        <a href="https://t.me/bot" class="cta-button">Начать бесплатно</a>
+        <a href="#pricing" class="cta-button" style="background: transparent; border: 2px solid white; color: white;">Тарифы</a>
     </section>
 
-    <section class="features">
-        <h2>Категория: RSS/News</h2>
-        <p style="text-align: center; font-size: 1.2em;">GitHub: Rongronggg9/RSS-to-Telegram-Bot</p>
-        <p style="text-align: center; font-size: 1.5em; margin-top: 20px; color: #667eea;">
-            <strong>$1.99/месяц</strong>
-        </p>
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat"><h3>100K+</h3><p>Пользователей</p></div>
+            <div class="stat"><h3>4.9/5</h3><p>Рейтинг</p></div>
+            <div class="stat"><h3>24/7</h3><p>Поддержка</p></div>
+            <div class="stat"><h3>$1.99</h3><p>/месяц</p></div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 class="section-title">Возможности Smart RSS Reader</h2>
+        <p class="section-subtitle">Всё, что нужно для эффективной работы</p>
+        <div class="features-grid">
+            <div class="feature-card">
+            <div class="feature-icon">📡</div>
+            <h3>Фиды</h3>
+            <p>Множество источников</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Форматирование</h3>
+            <p>Красивый вывод</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">⏰</div>
+            <h3>Расписание</h3>
+            <p>Авто-обновление</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Фильтры</h3>
+            <p>Только нужное</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Удобство</h3>
+            <p>Чтение в Telegram</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">🌐</div>
+            <h3>Языки</h3>
+            <p>Мультиязычность</p>
+        </div>
+        </div>
+    </div>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Тарифы</h2>
+            <p class="section-subtitle">Выберите подходящий план</p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p>Для начала</p>
+                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                        <li>✓ Базовые функции</li>
+                        <li>✓ 20 запросов/день</li>
+                        <li>✓ Email поддержка</li>
+                    </ul>
+                    <a href="#" class="cta-button">Начать</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Pro ⭐</h3>
+                    <div class="price">$1.99</div>
+                    <p>Для профессионалов</p>
+                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                        <li>✓ Все функции</li>
+                        <li>✓ Безлимитно</li>
+                        <li>✓ Приоритет</li>
+                        <li>✓ Поддержка 24/7</li>
+                    </ul>
+                    <a href="#" class="cta-button">Попробовать</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
         <p>&copy; 2025 Smart RSS Reader. Все права защищены.</p>
+        <p style="margin-top: 10px;">Категория: RSS</p>
+        <p style="margin-top: 5px;">
+            GitHub: <a href="https://github.com/Rongronggg9/RSS-to-Telegram-Bot" style="color: #f59e0b;">Rongronggg9/RSS-to-Telegram-Bot</a>
+        </p>
     </footer>
 </body>
 </html>
