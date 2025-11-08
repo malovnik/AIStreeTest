@@ -8,6 +8,7 @@ export default defineConfig({
     host: '0.0.0.0',
     port: process.env.PORT || 4173,
     strictPort: true,
+    allowedHosts: true, // Accept all hosts (Railway, custom domains, etc)
   },
   server: {
     host: '0.0.0.0',
