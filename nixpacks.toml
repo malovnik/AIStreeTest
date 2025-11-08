@@ -1,0 +1,21 @@
+# Nixpacks configuration for monorepo with React app in subdirectory
+
+[phases.setup]
+nixPkgs = ['nodejs_20']
+
+[phases.install]
+dependsOn = ['setup']
+cmds = [
+  'cd telegram-bots-catalog',
+  'npm ci --legacy-peer-deps'
+]
+
+[phases.build]
+dependsOn = ['install']
+cmds = [
+  'cd telegram-bots-catalog',
+  'npm run build'
+]
+
+[start]
+cmd = 'cd telegram-bots-catalog && npm run preview -- --host 0.0.0.0 --port $PORT'

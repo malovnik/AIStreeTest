@@ -1,8 +1,0 @@
-[build]
-builder = "nixpacks"
-buildCommand = "cd telegram-bots-catalog && npm ci && npm run build"
-
-[deploy]
-startCommand = "cd telegram-bots-catalog && npm run preview -- --host 0.0.0.0 --port $PORT"
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
