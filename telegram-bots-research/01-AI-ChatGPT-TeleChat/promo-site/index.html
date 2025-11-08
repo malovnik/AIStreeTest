@@ -6,61 +6,452 @@
     <title>TeleChat - Множество AI-моделей в одном боте</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6; color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
         }
+
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #667eeadd 100%);
-            color: white; padding: 100px 20px; text-align: center;
+            color: white;
+            padding: 120px 20px 80px;
+            text-align: center;
         }
-        .hero h1 { font-size: 4em; font-weight: 900; margin-bottom: 20px; }
-        .hero p { font-size: 1.5em; margin-bottom: 30px; opacity: 0.9; }
+
+        .hero h1 {
+            font-size: 4em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         .cta-button {
-            display: inline-block; background: white; color: #667eea;
-            padding: 18px 50px; border-radius: 50px; text-decoration: none;
-            font-weight: bold; font-size: 1.3em; margin: 10px;
-            transition: transform 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 20px 10px 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .cta-button:hover { transform: translateY(-5px); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { font-size: 3em; text-align: center; margin-bottom: 20px; color: #667eea; font-weight: 800; }
-        .section-subtitle { text-align: center; font-size: 1.3em; color: #64748b; margin-bottom: 60px; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 3px solid white;
+            color: white;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 60px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat h3 {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        .stat p {
+            font-size: 1.1em;
+            color: #64748b;
+        }
+
+        /* Section Common Styles */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #667eea;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #64748b;
+            margin-bottom: 60px;
+        }
+
+        /* Problems Section */
+        .problems-section {
+            background: #f8fafc;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #ef4444;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .problem-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            background: linear-gradient(135deg, #667eea 0%, #667eeadd 100%);
+            color: white;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .solution-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .solution-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        /* Features Section */
+        .features-section {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
         .feature-card {
             background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
-            padding: 40px; border-radius: 20px; text-align: center;
-            transition: transform 0.3s; border: 2px solid #e0f2fe;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px solid #e0f2fe;
         }
-        .feature-card:hover { transform: translateY(-10px); }
-        .feature-icon { font-size: 4em; margin-bottom: 20px; }
-        .feature-card h3 { font-size: 1.5em; margin-bottom: 15px; color: #667eea; }
-        .stats { padding: 60px 20px; background: white; text-align: center; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1000px; margin: 0 auto; }
-        .stat h3 { font-size: 3em; color: #667eea; margin-bottom: 10px; }
-        .pricing { padding: 80px 20px; background: #f8fafc; }
-        .pricing-cards { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: #f8fafc;
+        }
+
+        .steps {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #667eeadd 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .step-content {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .step-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        /* Use Cases */
+        .use-cases-section {
+            background: white;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .use-case {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .use-case-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .use-case h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            background: #f8fafc;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
         .pricing-card {
-            background: white; padding: 50px 40px; border-radius: 25px;
-            min-width: 300px; max-width: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            min-width: 300px;
+            max-width: 380px;
+            border: 3px solid #e2e8f0;
         }
+
         .pricing-card.featured {
             background: linear-gradient(135deg, #667eea 0%, #667eeadd 100%);
-            color: white; transform: scale(1.05);
+            color: white;
+            transform: scale(1.05);
         }
-        .price { font-size: 4em; font-weight: 900; margin: 20px 0; }
-        .footer { background: #0f172a; color: white; text-align: center; padding: 60px 20px; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5em; } .section-title { font-size: 2em; } }
+
+        .pricing-card h3 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 4em;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .pricing-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: #f8fafc;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .faq-answer {
+            padding: 0 30px 25px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #667eeadd 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .final-cta p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer a:hover {
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .section-title { font-size: 2em; }
+            .step { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- 1. Hero Section -->
     <section class="hero">
         <h1>🤖 TeleChat</h1>
-        <p>Множество AI-моделей в одном боте</p>
-        <a href="https://t.me/bot" class="cta-button">Начать бесплатно</a>
-        <a href="#pricing" class="cta-button" style="background: transparent; border: 2px solid white; color: white;">Тарифы</a>
+        <div class="hero-subtitle">Множество AI-моделей в одном боте</div>
+        <p class="hero-description">GPT-5, Claude 4.1, Gemini 2.5 Pro, Groq и DALL·E 3</p>
+        <div>
+            <a href="https://t.me/bot" class="cta-button">Начать бесплатно</a>
+            <a href="#pricing" class="cta-button secondary">Смотреть тарифы</a>
+        </div>
     </section>
 
+    <!-- 2. Stats -->
     <section class="stats">
         <div class="stats-grid">
             <div class="stat"><h3>100K+</h3><p>Пользователей</p></div>
@@ -70,53 +461,148 @@
         </div>
     </section>
 
-    <div class="container">
-        <h2 class="section-title">Возможности TeleChat</h2>
-        <p class="section-subtitle">Всё, что нужно для эффективной работы</p>
-        <div class="features-grid">
-            <div class="feature-card">
-            <div class="feature-icon">🧠</div>
-            <h3>AI Модели</h3>
-            <p>Новейшие языковые модели</p>
-        </div>
-<div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h3>Быстро</h3>
-            <p>Ответы за секунды</p>
-        </div>
-<div class="feature-card">
-            <div class="feature-icon">🎨</div>
-            <h3>Генерация</h3>
-            <p>Тексты и изображения</p>
-        </div>
-<div class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3>Чаты</h3>
-            <p>Групповая работа</p>
-        </div>
-<div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h3>Знания</h3>
-            <p>Обширная база знаний</p>
-        </div>
-<div class="feature-card">
-            <div class="feature-icon">🔒</div>
-            <h3>Безопасно</h3>
-            <p>Защита данных</p>
-        </div>
-        </div>
-    </div>
-
-    <section class="pricing" id="pricing">
+    <!-- 3. Problems -->
+    <section class="section problems-section">
         <div class="container">
-            <h2 class="section-title">Тарифы</h2>
-            <p class="section-subtitle">Выберите подходящий план</p>
+            <h2 class="section-title">Какие проблемы вы испытываете?</h2>
+            <p class="section-subtitle">Мы знаем эти боли - потому что решили их все</p>
+            <div class="problems-grid">
+                <div class="problem-card"><div class="problem-icon">❌</div><p>Множество подписок на разные AI-сервисы</p></div>
+<div class="problem-card"><div class="problem-icon">❌</div><p>Высокая стоимость - $50+/месяц</p></div>
+<div class="problem-card"><div class="problem-icon">❌</div><p>Переключение между приложениями</p></div>
+<div class="problem-card"><div class="problem-icon">❌</div><p>Сложная настройка и API ключи</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Solutions -->
+    <section class="section solutions-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">TeleChat - это решение</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Всё, что вам нужно, в одном боте</p>
+            <div class="solutions-grid">
+                <div class="solution-card"><div class="solution-icon">✅</div><p>Все модели в одном месте</p></div>
+<div class="solution-card"><div class="solution-icon">✅</div><p>Одна подписка от $7.99/мес</p></div>
+<div class="solution-card"><div class="solution-icon">✅</div><p>Всё в Telegram - всегда под рукой</p></div>
+<div class="solution-card"><div class="solution-icon">✅</div><p>Запустили и сразу работает</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Features -->
+    <section class="section features-section">
+        <div class="container">
+            <h2 class="section-title">Возможности TeleChat</h2>
+            <p class="section-subtitle">Полный набор функций для максимальной продуктивности</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>AI Модели</h3>
+                <p>Доступ к лучшим языковым моделям</p>
+            </div>
+<div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Быстро</h3>
+                <p>Ответы за 1-2 секунды</p>
+            </div>
+<div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Генерация</h3>
+                <p>Изображения, код, тексты</p>
+            </div>
+<div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Контекст</h3>
+                <p>Запоминает историю беседы</p>
+            </div>
+<div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Мобильность</h3>
+                <p>Работает на любом устройстве</p>
+            </div>
+<div class="feature-card">
+                <div class="feature-icon">🔐</div>
+                <h3>Приватность</h3>
+                <p>Ваши данные защищены</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. How It Works -->
+    <section class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как начать за 60 секунд</h2>
+            <p class="section-subtitle">Проще простого - без регистрации и заморочек</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Откройте Telegram</h3>
+                        <p>Установлен у вас на телефоне? Отлично! Переходите к шагу 2.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Найдите бота</h3>
+                        <p>Нажмите на кнопку "Начать" или найдите @TeleChat_bot в поиске.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Нажмите Start</h3>
+                        <p>Бот поприветствует вас и покажет краткую инструкцию.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Начните использовать!</h3>
+                        <p>Просто напишите свой вопрос или команду. Готово!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Use Cases -->
+    <section class="section use-cases-section">
+        <div class="container">
+            <h2 class="section-title">Кто использует TeleChat?</h2>
+            <p class="section-subtitle">Тысячи профессионалов по всему миру</p>
+            <div class="use-cases-grid">
+                <div class="use-case">
+                <div class="use-case-icon">👨‍💻</div>
+                <h3>Разработчики</h3>
+                <p>Генерация и код-ревью</p>
+            </div>
+<div class="use-case">
+                <div class="use-case-icon">✍️</div>
+                <h3>Копирайтеры</h3>
+                <p>Контент в 3 раза быстрее</p>
+            </div>
+<div class="use-case">
+                <div class="use-case-icon">🎓</div>
+                <h3>Студенты</h3>
+                <p>Помощь с учебой 24/7</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Pricing -->
+    <section class="section pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Простые и честные тарифы</h2>
+            <p class="section-subtitle">Выберите план, который подходит вам</p>
             <div class="pricing-cards">
                 <div class="pricing-card">
                     <h3>Free</h3>
                     <div class="price">$0</div>
                     <p>Для начала</p>
-                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <ul>
                         <li>✓ Базовые функции</li>
                         <li>✓ 20 запросов/день</li>
                         <li>✓ Email поддержка</li>
@@ -127,11 +613,11 @@
                     <h3>Pro ⭐</h3>
                     <div class="price">$9.99</div>
                     <p>Для профессионалов</p>
-                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <ul>
                         <li>✓ Все функции</li>
                         <li>✓ Безлимитно</li>
                         <li>✓ Приоритет</li>
-                        <li>✓ Поддержка 24/7</li>
+                        <li>✓ 24/7 поддержка</li>
                     </ul>
                     <a href="#" class="cta-button">Попробовать</a>
                 </div>
@@ -139,12 +625,72 @@
         </div>
     </section>
 
+    <!-- 9. Testimonials -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Что говорят пользователи</h2>
+            <p class="section-subtitle">Более 100,000 довольных клиентов</p>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                <p class="testimonial-text">"Этот бот экономит мне минимум 3 часа в день. Теперь не надо платить за ChatGPT Plus, Claude Pro и Midjourney отдельно!"</p>
+                <p class="testimonial-author">— Дмитрий С., программист</p>
+            </div>
+<div class="testimonial">
+                <p class="testimonial-text">"Пишу статьи для блога в 2 раза быстрее. Качество AI ответов просто огонь!"</p>
+                <p class="testimonial-author">— Анна К., контент-маркетолог</p>
+            </div>
+<div class="testimonial">
+                <p class="testimonial-text">"Сдал диплом на отлично благодаря помощи бота. Рекомендую всем студентам!"</p>
+                <p class="testimonial-author">— Михаил П., студент</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FAQ -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <p class="section-subtitle">Ответы на популярные вопросы</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">Как начать пользоваться ботом?</div>
+                    <div class="faq-answer">Просто откройте Telegram, найдите @TeleChat_bot и нажмите Start. Бот сразу готов к работе!</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Какие способы оплаты доступны?</div>
+                    <div class="faq-answer">Мы принимаем банковские карты, PayPal, криптовалюты и Telegram Stars.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Можно ли отменить подписку?</div>
+                    <div class="faq-answer">Да, вы можете отменить подписку в любой момент без штрафов и скрытых платежей.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Есть ли бесплатный пробный период?</div>
+                    <div class="faq-answer">Да! Все новые пользователи получают 7 дней бесплатного доступа к Pro версии.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Final CTA -->
+    <section class="final-cta">
+        <h2>Готовы начать?</h2>
+        <p>Присоединяйтесь к 100,000+ пользователям уже сегодня</p>
+        <a href="https://t.me/bot" class="cta-button">Начать бесплатно</a>
+    </section>
+
+    <!-- 12. Footer -->
     <footer class="footer">
         <p>&copy; 2025 TeleChat. Все права защищены.</p>
         <p style="margin-top: 10px;">Категория: AI</p>
-        <p style="margin-top: 5px;">
-            GitHub: <a href="https://github.com/yym68686/ChatGPT-Telegram-Bot" style="color: #667eea;">yym68686/ChatGPT-Telegram-Bot</a>
+        <p style="margin-top: 10px;">
+            <a href="https://github.com/yym68686/ChatGPT-Telegram-Bot">GitHub</a>
+            <a href="#">Поддержка</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
         </p>
     </footer>
+
 </body>
 </html>
