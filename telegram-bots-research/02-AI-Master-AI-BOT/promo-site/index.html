@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master AI BOT - Безлимитный GPT-4 Turbo в Telegram</title>
+    <title>Master AI BOT - Безлимитный GPT-4 Turbo</title>
     <style>
         * {
             margin: 0;
@@ -12,30 +12,61 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #1a1a1a;
             overflow-x: hidden;
         }
 
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            padding: 120px 20px 80px;
+            padding: 100px 20px;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 4em;
+            font-size: 4.5em;
             font-weight: 900;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .hero-subtitle {
-            font-size: 1.8em;
+            font-size: 2em;
             margin-bottom: 15px;
             font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
@@ -47,13 +78,57 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.3em;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             margin: 10px;
         }
 
         .cta-button:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-button.secondary:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        /* Stats */
+        .stats {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat h3 {
+            font-size: 3em;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 20px;
         }
 
         .section-title {
@@ -64,10 +139,69 @@
             font-weight: 800;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 20px;
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            color: #64748b;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Problems Section */
+        .problems-section {
+            background: #f8fafc;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #ef4444;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .problem-card h3 {
+            font-size: 1.2em;
+            color: #ef4444;
+            margin-bottom: 10px;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .solution-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .solution-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Features */
+        .features-section {
+            background: white;
         }
 
         .features-grid {
@@ -77,10 +211,11 @@
         }
 
         .feature-card {
-            background: white;
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
             padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #e0f2fe;
+            text-align: center;
             transition: transform 0.3s;
         }
 
@@ -88,57 +223,523 @@
             transform: translateY(-10px);
         }
 
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+        }
+
+        /* Use Cases */
+        .use-cases-section {
+            background: #f8fafc;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .use-case {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .use-case-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .use-case h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .step-content {
+            flex: 1;
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .step-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #1e3a8a;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            background: #f8fafc;
+        }
+
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            min-width: 300px;
+            max-width: 380px;
+            border: 3px solid #e2e8f0;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 4em;
+            font-weight: 900;
+            margin: 20px 0;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        /* FAQ */
+        .faq-section {
+            background: #f8fafc;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #e2e8f0;
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1e3a8a;
+            cursor: pointer;
+        }
+
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+
+        .faq-answer {
+            padding: 0 30px 25px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        /* Footer */
         .footer {
             background: #0f172a;
             color: white;
+            padding: 60px 20px 30px;
             text-align: center;
-            padding: 60px 20px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .section-title { font-size: 2em; }
+            .step { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <section class="hero">
-        <h1>🚀 Master AI BOT</h1>
-        <div class="hero-subtitle">Безлимитный доступ к GPT-4 Turbo прямо в Telegram</div>
-        <p style="font-size: 1.2em; margin-bottom: 40px;">
-            Навсегда забудьте о дневных лимитах! Общайтесь с самой мощной AI-моделью без ограничений
-        </p>
-        <a href="https://t.me/master_ai_bot" class="cta-button">Начать бесплатно</a>
-    </section>
 
-    <div class="container">
-        <h2 class="section-title">Что умеет Master AI BOT?</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <h3>♾️ Безлимитные запросы</h3>
-                <p>Никаких дневных лимитов. Хоть 1000 сообщений в день - мы не ограничиваем!</p>
-            </div>
-            <div class="feature-card">
-                <h3>⚡ GPT-4 Turbo</h3>
-                <p>Самая мощная языковая модель с 128K контекстом</p>
-            </div>
-            <div class="feature-card">
-                <h3>🎨 DALL·E 2</h3>
-                <p>Создавайте уникальные изображения прямо в чате</p>
-            </div>
-            <div class="feature-card">
-                <h3>🎤 Голос</h3>
-                <p>Отправляйте голосовые - получайте текстовые ответы</p>
-            </div>
-            <div class="feature-card">
-                <h3>🎭 Спецрежимы</h3>
-                <p>Программист, учитель, копирайтер - 5+ режимов</p>
-            </div>
-            <div class="feature-card">
-                <h3>👥 Группы</h3>
-                <p>Добавьте бота в групповой чат команды</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>♾️ Master AI BOT</h1>
+            <div class="hero-subtitle">Безлимитный GPT-4 Turbo</div>
+            <p class="hero-description">Никаких дневных лимитов на ваши запросы</p>
+            <p class="hero-description">Общайтесь с GPT-4 Turbo без ограничений + DALL·E 2 генерация</p>
+
+            <div>
+                <a href="https://t.me/bot" class="cta-button">Начать бесплатно</a>
+                <a href="#pricing" class="cta-button secondary">Смотреть тарифы</a>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat">
+                <h3>100K+</h3>
+                <p>Пользователей</p>
+            </div>
+            <div class="stat">
+                <h3>4.9/5</h3>
+                <p>Рейтинг</p>
+            </div>
+            <div class="stat">
+                <h3>24/7</h3>
+                <p>Поддержка</p>
+            </div>
+            <div class="stat">
+                <h3>$7.99</h3>
+                <p>/месяц</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems -->
+    <section class="section problems-section">
+        <div class="container">
+            <h2 class="section-title">Какие проблемы вы испытываете?</h2>
+            <p class="section-subtitle">Мы знаем эти боли - потому что решили их все</p>
+
+            <div class="problems-grid">
+                <div class="problem-card"><h3>❌ ChatGPT Plus ограничивает до 25-50 сообщений/день</h3></div>
+<div class="problem-card"><h3>❌ Медленные ответы убивают продуктивность</h3></div>
+<div class="problem-card"><h3>❌ Дорогая подписка $20/месяц</h3></div>
+<div class="problem-card"><h3>❌ Нет специальных режимов для разных задач</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions -->
+    <section class="section solutions-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Master AI BOT - это решение</h2>
+            <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">
+                Всё, что вам нужно, в одном боте
+            </p>
+
+            <div class="solutions-grid">
+                <div class="solution-card"><h3>✅ Безлимитные запросы - хоть 1000 в день</h3></div>
+<div class="solution-card"><h3>✅ Ответы за 1-2 секунды</h3></div>
+<div class="solution-card"><h3>✅ Всего $7.99/месяц</h3></div>
+<div class="solution-card"><h3>✅ 5+ специальных режимов (код, учеба, бизнес)</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section features-section">
+        <div class="container">
+            <h2 class="section-title">Возможности Master AI BOT</h2>
+            <p class="section-subtitle">Полный набор функций для максимальной продуктивности</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+            <div class="feature-icon">♾️</div>
+            <h3>Безлимит</h3>
+            <p>Никаких ограничений на запросы</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>GPT-4 Turbo</h3>
+            <p>128K контекстное окно</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>DALL·E 2</h3>
+            <p>Генерация изображений</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">🎤</div>
+            <h3>Голос</h3>
+            <p>Распознавание голосовых</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">🎭</div>
+            <h3>Режимы</h3>
+            <p>Программист, учитель, копирайтер</p>
+        </div>
+<div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Группы</h3>
+            <p>Добавьте в командный чат</p>
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как начать за 60 секунд</h2>
+            <p class="section-subtitle">Проще простого - без регистрации и заморочек</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Откройте Telegram</h3>
+                        <p>Установлен у вас на телефоне? Отлично! Переходите к шагу 2.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Найдите бота</h3>
+                        <p>Нажмите на кнопку "Начать" или найдите @Master AI BOT_bot в поиске.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Нажмите Start</h3>
+                        <p>Бот поприветствует вас и покажет краткую инструкцию.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Начните использовать!</h3>
+                        <p>Просто напишите свой вопрос или команду. Готово!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="section use-cases-section">
+        <div class="container">
+            <h2 class="section-title">Кто использует Master AI BOT?</h2>
+            <p class="section-subtitle">Тысячи профессионалов по всему миру</p>
+
+            <div class="use-cases-grid">
+                <div class="use-case">
+            <div class="use-case-icon">👨‍💻</div>
+            <h3>Программисты</h3>
+            <p><strong>3-5 часов экономии/день</strong></p>
+        </div>
+<div class="use-case">
+            <div class="use-case-icon">✍️</div>
+            <h3>Копирайтеры</h3>
+            <p><strong>В 3 раза больше контента</strong></p>
+        </div>
+<div class="use-case">
+            <div class="use-case-icon">💼</div>
+            <h3>Предприниматели</h3>
+            <p><strong>$1000+ экономии</strong></p>
+        </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Простые и честные тарифы</h2>
+            <p class="section-subtitle">Выберите план, который подходит вам</p>
+
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="price">$0</div>
+                    <p>Для знакомства</p>
+                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                        <li>✓ Базовые функции</li>
+                        <li>✓ 20 запросов/день</li>
+                        <li>✓ Email поддержка</li>
+                    </ul>
+                    <a href="#" class="cta-button">Начать</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Pro ⭐</h3>
+                    <div class="price">$7.99</div>
+                    <p>Для профессионалов</p>
+                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                        <li>✓ Все функции</li>
+                        <li>✓ Безлимитные запросы</li>
+                        <li>✓ Приоритетная поддержка</li>
+                        <li>✓ Все обновления</li>
+                    </ul>
+                    <a href="#" class="cta-button">Попробовать 7 дней</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">Что говорят пользователи</h2>
+            <p class="section-subtitle">Отзывы реальных людей</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">"Отличный бот! Экономлю 3+ часа каждый день. Рекомендую всем!"</p>
+                    <p class="testimonial-author">— Алексей, разработчик</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Использую для работы и учебы. Незаменимый помощник!"</p>
+                    <p class="testimonial-author">— Мария, студентка</p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">"Лучшее соотношение цены и качества. Намного лучше конкурентов."</p>
+                    <p class="testimonial-author">— Дмитрий, предприниматель</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <p class="section-subtitle">Ответы на популярные вопросы</p>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question">Можно ли попробовать бесплатно?</div>
+                    <div class="faq-answer">Да! Мы даем 7 дней бесплатного доступа к Pro версии. Без карты.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Какие способы оплаты принимаете?</div>
+                    <div class="faq-answer">Visa/Mastercard, PayPal, криптовалюты и российские карты МИР.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Есть ли возврат денег?</div>
+                    <div class="faq-answer">Да! 30 дней гарантия возврата денег, без вопросов.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Готовы начать?</h2>
+            <p style="font-size: 1.5em; margin-bottom: 40px;">
+                Присоединяйтесь к тысячам пользователей
+            </p>
+            <a href="https://t.me/bot" class="cta-button">
+                Попробовать 7 дней бесплатно
+            </a>
+            <div style="margin-top: 30px; font-size: 1.1em;">
+                🛡️ Гарантия возврата денег 30 дней
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2025 Master AI BOT. Все права защищены.</p>
-        <p style="margin-top: 10px;">GitHub: yesbhautik/Master-AI-BOT</p>
+        <p style="margin-top: 10px;">
+            Категория: AI & Machine Learning
+        </p>
+        <p style="margin-top: 5px;">
+            GitHub: <a href="https://github.com/yesbhautik/Master-AI-BOT" style="color: #3b82f6;">yesbhautik/Master-AI-BOT</a>
+        </p>
+        <div class="footer-links">
+            <a href="#">Документация</a>
+            <a href="#">API</a>
+            <a href="#">Поддержка</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </div>
     </footer>
+
 </body>
 </html>
